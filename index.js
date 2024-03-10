@@ -11,9 +11,11 @@ const vetor = [0,1,2];
 const random = Math.floor(Math.random() * vetor.length);
 const resetButton = document.querySelector(".reset");
 const placar = document.querySelector(".placar");
-const win = document.querySelector(".vitorias")
-const tie = document.querySelector(".empates")
-const defeat = document.querySelector(".derrotas")
+const win = document.querySelector(".vitorias");
+const tie = document.querySelector(".empates");
+const defeat = document.querySelector(".derrotas");
+const resultadoContainer = document.querySelector(".resultado-container");
+let larguraTela = window.innerWidth;
 
 let vitoria = 0;
 let derrota = 0;
@@ -45,6 +47,7 @@ function reset(card){
         })
         oponent.style.opacity = 0;
         oponentCard.src = " ";
+        larguraTela = window.innerWidth;
     })
 }
 
@@ -62,7 +65,17 @@ function hideOtherCards(selectedCard) {
 }
 
 function performInitialAdjustments(card) {
-    card.style.transform = "translateY(-150px) translateX(-500px)";
+
+    if(larguraTela >= 1180){
+        card.style.transform = "translateY(-150px) translateX(-500px)";
+    }else if(larguraTela < 1180 && larguraTela >= 800){
+        card.style.transform = "translateY(-100px) translateX(-300px)";
+    }else if(larguraTela < 800 && larguraTela >= 600){
+        card.style.transform = "translateY(-100px) translateX(-200px)";
+    }else if(larguraTela < 600){
+        card.style.transform = "translateY(-210px) translateX(0px)";
+    }
+    
     card.style.borderColor = "#00b894";
     cardsContainer.style.cursor = "default";
     cardsContainer.style.pointerEvents = "none";
@@ -73,7 +86,15 @@ function performInitialAdjustments(card) {
     versus.style.opacity = 1;
     versus.style.zIndex = 3;
     oponent.style.opacity = 1;
-    oponent.style.transform = "translate(500px, 50px)";
+    if(larguraTela >= 1180){
+        oponent.style.transform = "translate(500px, 50px)";
+    }else if(larguraTela < 1180 && larguraTela >= 800){
+        oponent.style.transform = "translate(300px, 100px)";
+    }else if(larguraTela < 800 && larguraTela >= 600){
+        oponent.style.transform = "translate(200px, 100px)";
+    }else if(larguraTela < 600){
+        oponent.style.transform = "translate(0px, 100px)";   
+    }
     oponent.style.borderColor = "#00b894";
     placar.style.opacity = 0;
 }
@@ -145,9 +166,27 @@ function updateGameResult(newRandom, card) {
 
 function adjustCardPosition(card){
     if(card === cards[0]) {
-        card.style.transform = "translateY(-150px) translateX(-300px)";
+        if(larguraTela >= 1180){
+            card.style.transform = "translateY(-150px) translateX(-300px)";
+        }else if(larguraTela < 1800 && larguraTela >= 800){
+            card.style.transform = "translateY(-100px) translateX(-100px)";
+        }else if(larguraTela < 800 && larguraTela >= 600){
+            card.style.transform = "translateY(-100px) translateX(0px)";
+        }else if(larguraTela < 600){
+            card.style.transform = "translateY(-210px) translateX(160px)";
+        }
+        
     } else if (card === cards[2]) {
-        card.style.transform = "translateY(-150px) translateX(-700px)";
+        if(larguraTela >= 1180){
+            card.style.transform = "translateY(-150px) translateX(-700px)";
+        }else if(larguraTela < 1800 && larguraTela >= 800){
+            card.style.transform = "translateY(-100px) translateX(-500px)";
+        }else if(larguraTela < 800 && larguraTela >= 600){
+            card.style.transform = "translateY(-100px) translateX(-400px)";
+        }else if(larguraTela < 600){
+            card.style.transform = "translateY(-210px) translateX(-160px)";
+        }
+        
     }
 }
 
@@ -173,6 +212,24 @@ cards.forEach((card, i) => {
         
     });
 });
+
+placar.addEventListener("click", () =>{
+    if(placar.classList.contains("aberto")){
+        placar.style.width = "70px";
+        placar.classList.remove("aberto");
+        resultadoContainer.style.opacity = 0;
+        setTimeout(() => {
+            resultadoContainer.style.display = "none";
+        }, 1000);
+    }else{
+        placar.style.width = "300px";
+        placar.classList.add("aberto");
+        resultadoContainer.style.display = "flex";
+        setTimeout(() => {
+            resultadoContainer.style.opacity = 1;
+        }, 1000);
+    }
+})
 
 
 
