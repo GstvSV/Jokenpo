@@ -75,6 +75,7 @@ h1{
     position: absolute;
     font-weight: bold;
     font-size: 50px;
+    display: none;
     opacity: 0;
     transition: opacity 2s ease;
 }
@@ -85,6 +86,7 @@ h1{
     z-index: 3;
     pointer-events: none;
     opacity: 0;
+    transform: translate(300px, 300px);
 }
 
 .reset{
@@ -102,4 +104,33 @@ h1{
 
 .reset:hover{
     border-color: white;
+}
+
+.placar{
+    position: absolute;
+    left: 0px;
+    top: 40vh;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 50px;
+    opacity: 1;
+
+}
+
+.resultado-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.resultado-container div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
