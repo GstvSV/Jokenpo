@@ -110,12 +110,12 @@ h1{
     position: absolute;
     left: 0px;
     top: 40vh;
-    width: 400px;
+    width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    gap: 50px;
+    gap: 30px;
     opacity: 1;
 
 }
